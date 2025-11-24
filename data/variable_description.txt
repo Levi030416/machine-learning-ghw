@@ -1,1 +1,53 @@
+male: whether the respondent is male (0 =No;1=Yes)
+race: race of the respondent (1 = white; 2 = Black; 3 = Hispanic; 4 = other)
+age: age of the respondent given in years
+college: whether the respondent has a college degree (0 =No;1=Yes)
+income: 0-12 scale, higher number indicates higher household income
+evangelical: whether an individual identifies as a Christian Evangelical (1=Yes, 0=No).
+county_density: population density of the county
+county_covid_cap_cases: the proportion of people in the county in which they reside that have been infected
+county_covid_cap_cases2wk: the proportion of people in their county that have been infected in the past two weeks
+pandemic_impact_personal: the extent to which the respondent’s financial health and mental health were impacted by the pandemic (mean of the two values, 0-10 scale, 0=major negative impact, 10=major positive impact)	
+pandemic_impact_network: the extent to which the respondent’s close circle’s financial health and mental health were impacted by the pandemic (mean of the two values, 0-10 scale, 0=major negative impact, 10=major positive impact) 
+infected_personal: whether they have already been infected (Infected Personal: 0 = No; 1 = Yes)
+infected_network: whether someone in their immediate network has been infected (0 = No; 1 = Yes)
+individual_responsibility: how much a respondent believes it is their own duty to act responsibly in the pandemic (0-10, higher numbers indicate higher responsibility)
+trust_science_community: extent to which respondents have confidence in the scientific community (0-10 scale, higher value=higher trust)	
+trust_science_polmotives: Trust Science Apolitical; captures the extent to which respondents are confident political biases do not impact scientific research (0-10 scale, higher value=higher trust)	
+trust_science_politicians: the extent to which a respondent believes that politicians can be trusted to appropriately use and accurately communicate scientific findings (0-10 scale, higher value=higher trust)	
+trust_science_media: the extent to which a respondent believes that the media can be trusted to appropriately use and accurately communicate scientific findings (0-10 scale, higher value=higher trust)
+trust_media: general trust in the media that it does ‘what is right’ (0-10 scale, 0=Never, 10=Always)
+trust_gov_nat: the extent to which a respondent trusts each of the respective levels of government to do ‘‘what is right” (0–10 scale; 0=”Never” ; 10=”Always”)
+trust_gov_state: the extent to which a respondent trusts each of the respective levels of government to do ‘‘what is right” (0–10 scale; 0=”Never”; 10=”Always” )	
+trust_gov_local: the extent to which a respondent trusts each of the respective levels of government to do ‘‘what is right” (0–10 scale; 0=”Never” ; 10=”Always”)
+president_approval: support for the then president (Biden) (0=No, 1=Yes)
+trump_approval_retrospective: support for the previous president (0=No, 1=Yes)
+party_id: respondents’ political affiliation (1 = Democrat; 2 = Independent; 3 = Libertarian; 4 = Republican; 5 = other)
+psindex: how ‘‘politically sophisticated” or knowledgeable an individual is (respondents were asked trivia questions, 0-1 scale, 0=zero percent correct answers, 1=100 percent correct)
+nsindex: Natural Science Literacy index; how scientifically literate an individual is (respondents were asked trivia questions, 0-1 scale, 0=zero percent correct answers, 1=100 percent correct)
+perceived_personal_riskq297_4: extent to which an individual agrees that the coronavirus ‘‘poses a serious risk to my health” (0–10 scale where 0 = complete disagreement and 10 = complete agreement)
+perceived_network_risk: extent to which they agree it ‘‘poses a serious risk to those with whom they regularly interact” (0–10 scale where 0 = complete disagreement and 10 = complete agreement)	
+doctor_comfort: the extent to which a respondent agrees that they ‘‘feel comfortable going to the doctor”	(0-10 scale, 0=complete disagreement, 10=complete agreement)
+fear_needles	: the extent to which a respondent agrees that they are afraid of needles (0-10 scale, 0=complete disagreement, 10=complete agreement)
+vaccine_trust: index combining the extent to which the respondent agrees that the vaccine is safe, effective and ‘the public has been provided with enough information about the coronavirus vaccine’, (0-10 scale, 0=complete disagreement, 10=complete agreement)
+condition_pregnant	: respondent is pregnant (0=No; 1=Yes)
+condition_asthma: respondent has asthma (0=No; 1=Yes)
+condition_lung: respondent has lung disease0=No; 1=Yes)
+condition_diabetes: respondent has diabetes (0=No; 1=Yes)
+condition_immune: respondent has immune disorder (0=No; 1=Yes)
+condition_obesity: respondent is obese (0=No; 1=Yes)
+condition_heart: respondent has heart problems (0=No; 1=Yes)
+condition_organ: respondent has liver or kidney problems (0=No; 1=Yes)	
+vaccine_hesitant: ‘delay in acceptance or refusal of vaccination despite the availability of vaccination services’ (equals 0 when a respondent had either already received one dose of the vaccine or indicated that they planned on getting it ‘‘as soon as possible”; equals 1 if the respondent i) had not yet received a vaccine, and ii) indicated that they were either unsure about getting the vaccine or planning to wait to get the vaccine, or iii) they refuse to get the vaccine)
+
+Categorization:
+DUMMIES:
+male, college, evangelical, infected_personal, infected_network, president_approval, trump_approval_retrospective, condition_pregnant, condition_asthma, condition_lung, condition_diabetes, condition_immune, condition_obesity, condition_heart, condition_organ, vaccine_hesitant
+OTHER CATEGORICAL:
+race: 1 = white; 2 = Black; 3 = Hispanic; 4 = other
+party_id: 1 = Democrat; 2 = Independent; 3 = Libertarian; 4 = Republican; 5 = other
+0-10 (or 12) SCALE (discrete):
+individual_responsibility, trust_science_community, trust_science_polmotives, trust_science_politicians, trust_science_media, trust_media, trust_gov_nat, trust_gov_state, trust_gov_local, perceived_personal_riskq297_4, perceived_network_risk, doctor_comfort, fear_needles, income
+NUMERIC:
+county_density, age, county_covid_cap_cases, county_covid_cap_cases2wk, psindex, nsindex, pandemic_impact_personal, pandemic_impact_network, vaccine_trust
 
