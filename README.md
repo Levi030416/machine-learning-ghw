@@ -47,3 +47,6 @@ Variables include:
    ```text
    data/vh_data14.csv
 
+**Expected runtime (full pipeline):** ~10 minutes 38 seconds on a standard personal laptop.  
+This includes data loading, feature engineering, model training, evaluation, and Wave 1 prediction.  
+Runtime may vary depending on hardware, available memory, and parallelization settings.
