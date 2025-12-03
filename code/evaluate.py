@@ -64,6 +64,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from vh_code.features import features
 from sklearn.metrics import (
     accuracy_score,
     precision_score,
@@ -296,7 +297,7 @@ def evaluate(
     print(f"Saved predictions to {preds_path}")
 
     # ============================================
-    # OPTIONAL PLOTS: FEATURE IMPORTANCE + ROC/PR
+    # FEATURE IMPORTANCE + ROC/PR
     # ============================================
     figures_dir = Path("./outputs/figures")
     figures_dir.mkdir(parents=True, exist_ok=True)
@@ -350,3 +351,92 @@ def evaluate(
     plt.savefig(pr_fig_path, dpi=300)
     plt.close()
     print(f"Saved Precision–Recall curves plot to {pr_fig_path}\n")
+    
+    
+def wave1_prediction_analysis(
+    ols_model,
+    ridge_model,
+    lasso_model,
+    dt_model,
+    rf_model,
+    X_train_raw,
+    y_train_raw,
+    X_train_fe,
+    X_train_std_fe,
+    vh_wave1,
+):
+    
+
+    X_wave1_raw = vh_wave1.copy()
+    y_dummy = np.zeros(len(X_wave1_raw))  # dummy target to reuse features()
+
+
+    for col in X_train_raw.columns:
+        if col not in X_wave1_raw.columns:
+            X_wave1_raw[col] = np.nan
+
+    (
+        X_train_fe_w1,
+        X_wave1_fe,
+        _,
+        _,
+        X_train_std_w1,
+        X_wave1_std_w1,
+    ) = features(
+        X_train_raw.copy(),
+        X_wave1_raw.copy(),
+        y_train_raw.copy(),
+        y_dummy,
+    )
+
+    X_wave1_feat_aligned = X_wave1_fe.reindex(columns=X_train_fe.columns, fill_value=0.0)
+
+    X_wave1_std_aligned = X_wave1_std_w1.reindex(columns=X_train_std_fe.columns, fill_value=0.0)
+
+    wave1_predictions = {
+        "ols": ols_model.predict_proba(X_wave1_std_aligned)[:, 1],
+        "ridge": ridge_model.predict_proba(X_wave1_std_aligned)[:, 1],
+        "lasso": lasso_model.predict_proba(X_wave1_std_aligned)[:, 1],
+        "decision_tree": dt_model.predict_proba(X_wave1_feat_aligned)[:, 1],
+        "random_forest": rf_model.predict_proba(X_wave1_feat_aligned)[:, 1],
+    }
+
+    wave1_df = pd.DataFrame(wave1_predictions)
+    wave1_df["respondent_id"] = vh_wave1.index
+
+    outputs_dir = Path("./outputs")
+    outputs_dir.mkdir(parents=True, exist_ok=True)
+
+    wave1_path = outputs_dir / "wave1_predictions.csv"
+    wave1_df.to_csv(wave1_path, index=False)
+    print(f"Saved Wave 1 predictions to {wave1_path}")
+
+    # ----------------------------
+    # BASIC DESCRIPTIVE STAT
+    # ----------------------------
+    print("\n===== DESCRIPTIVE STATS: WAVE 1 PREDICTIONS =====")
+    desc_stats = wave1_df.drop(columns=["respondent_id"]).describe()
+    desc_path = outputs_dir / "wave1_prediction_descriptives.csv"
+    desc_stats.to_csv(desc_path)
+    print(desc_stats)
+    print(f"\nSaved Wave 1 descriptive statistics to {desc_path}")
+
+    # ----------------------------
+    # DISTRIBUTION PLOTS (HISTOS)
+    # ----------------------------
+    figures_dir = outputs_dir / "figures"
+    figures_dir.mkdir(parents=True, exist_ok=True)
+
+    for col in ["ols", "ridge", "lasso", "decision_tree", "random_forest"]:
+        plt.figure(figsize=(7, 5))
+        plt.hist(wave1_df[col], bins=30)
+        plt.xlabel("Predicted probability of hesitancy")
+        plt.ylabel("Frequency")
+        plt.title(f"Wave 1 prediction distribution — {col}")
+        plt.tight_layout()
+        fig_path = figures_dir / f"wave1_distribution_{col}.png"
+        plt.savefig(fig_path, dpi=300)
+        plt.close()
+        print(f"Saved Wave 1 distribution plot for {col} to {fig_path}")
+
+    print("\n===== WAVE 1 PREDICTION ANALYSIS DONE =====\n")

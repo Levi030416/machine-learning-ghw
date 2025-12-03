@@ -6,10 +6,10 @@ import numpy as np
 import random
 import math
 
-from vh_code.data import load_data, wave2, wave1, split
-from vh_code.features import features
-from vh_code.models import models
-from vh_code.evaluate import evaluate, wave1_prediction_analysis
+from code.data import load_data, wave2, wave1, split
+from code.features import features
+from code.models import models
+from code.evaluate import evaluate, wave1_prediction_analysis
 
 # SETTINGS
 
