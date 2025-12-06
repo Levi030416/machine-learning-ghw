@@ -65,32 +65,7 @@ Variables include:
 ### 3.6 Run pipeline (arguments --data_path dataset/vh_data14.csv and --seed 101 are optional)
     python main.py
 
-### 3.7 Expected runtime can vary between 5 to 10 minutes based on hardware specifications.
-
-### 3.8 Generated output files
-    outputs/
-    ├── metrics.json
-    ├── metrics_table.csv
-    ├── predictions.json
-    ├── wave1_predictions.csv
-    ├── wave1_prediction_descriptives.csv
-    └── figures/
-      ├── random_forest_feature_importance_top15.png
-      ├── roc_curves.png
-      ├── precision_recall_curves.png
-      ├── wave1_distribution_ols.png
-      ├── wave1_distribution_ridge.png
-      ├── wave1_distribution_lasso.png
-      ├── wave1_distribution_decision_tree.png
-      └── wave1_distribution_random_forest.png
-
-
-
-
-
-
-
-
+## Expected runtime can vary between 5 to 10 minutes based on hardware specifications.
 
 
 
