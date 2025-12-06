@@ -45,22 +45,43 @@ np.random.seed(seed)
 
 # 1) load data
 vh = load_data(data_path)
+vh_nvt = vh.drop(columns=['vaccine_trust'])
 vh_wave2 = wave2(vh)
+vh_wave2_nvt = wave2(vh_nvt)
+
+print("\nData loaded.")
 
 # 2) split
 X_train, X_test, y_train, y_test = split(vh_wave2, random_state=seed)
+X_train_nvt, X_test_nvt, y_train_nvt, y_test_nvt = split(vh_wave2_nvt, random_state=seed)
 
 X_train_raw = X_train.copy()
 y_train_raw = y_train.copy()
 
 # 3) features
 X_train, X_test, y_train, y_test, X_train_std, X_test_std = features(
-    X_train, X_test, y_train, y_test
+    X_train, X_test, y_train, y_test, 0
 )
 
+# No vaccine trust variable (nvt)
+X_train_nvt, X_test_nvt, y_train_nvt, y_test_nvt, X_train_std_nvt, X_test_std_nvt = features(
+    X_train_nvt, X_test_nvt, y_train_nvt, y_test_nvt, 1
+)
+
+print("\nFeature engineering done.")
+
 # 4) models
+
+print("\nBeginning model training with vaccine trust data...\n")
+
 ols_model, ridge_model, lasso_model, dt_model, rf_model = models(
     seed, TRIALS_NUMBER, K_FOLD_K, X_train, y_train, X_train_std
+)
+
+print("\nBeginning model training without vaccine trust data...\n")
+
+ols_model_nvt, ridge_model_nvt, lasso_model_nvt, dt_model_nvt, rf_model_nvt = models(
+    seed, TRIALS_NUMBER, K_FOLD_K, X_train_nvt, y_train_nvt, X_train_std_nvt
 )
 
 # 5) evaluation
@@ -74,6 +95,20 @@ evaluate(
     X_test_std,
     y_test,
     X_test.columns,
+    0
+)
+
+evaluate(
+    ols_model_nvt,
+    ridge_model_nvt,
+    lasso_model_nvt,
+    dt_model_nvt,
+    rf_model_nvt,
+    X_test_nvt,
+    X_test_std_nvt,
+    y_test_nvt,
+    X_test_nvt.columns,
+    1
 )
 
 # 6) Wave 1 prediction
