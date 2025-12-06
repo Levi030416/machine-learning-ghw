@@ -48,11 +48,9 @@ Variables include:
    data/vh_data14.csv
 
 
-## 3 FULL PROJECT SETUP & EXECUTION
+## 3 Setup and Exectuion
 
-### 3.1 Clone repository and enter it
-    git clone (https://github.com/Levi030416/vax-hesitancy-ml)
-    cd vax-hesitancy-ml
+### 3.1 Download repository, unzip it, and enter the folder vax-hesitancy-ml-main in a terminal window
 
 ### 3.2 Create virtual environment
     python -m venv .venv
@@ -66,37 +64,12 @@ Variables include:
 ### 3.4 Install all required packages
     pip install -r requirements.txt
 
-### 3.5 EXPECTED FOLDER STRUCTURE
-    vaccine_ml_project/
-    ├── main.py
-    ├── requirements.txt
-    ├── dataset/
-    │   └── vh_data14.csv
-    ├── code/
-    │   ├── data.py
-    │   ├── features.py
-    │   ├── models.py
-    │   └── evaluate.py
-    └── outputs/               <-- GENERATED AUTOMATICALLY
+### 3.6 Run pipeline
+    python main.py
+    
+    The arguments --data_path dataset/vh_data14.csv and --seed 101 are optional.
 
-### 3.6 RUN THE FULL MACHINE LEARNING PIPELINE
-    --data_path is REQUIRED by the script even though the data is already in /data
-    --seed is OPTIONAL (default = 101)
-    python main.py --data_path dataset/vh_data14.csv --seed 101
-
-### 3.7 PIPELINE BEHAVIOR
-- Loads dataset from data/
-- Uses Wave 2 for training
-- 80/20 stratified train–test split
-- Feature engineering (dummies, type conversion, imputation, scaling)
-
-Model training:
- - OLS, Ridge, Lasso, Decision Tree, Random Forest (Optuna tuned)
- - Model evaluation (Accuracy, Precision, Recall, F1, ROC-AUC, Confusion Matrix)
- - Wave 1 out-of-sample prediction
- - All results saved automatically into /outputs/
-
-### 3.8 GENERATED OUTPUT FILES
+### 3.7 Generated output files
     outputs/
     ├── metrics.json
     ├── metrics_table.csv
@@ -113,10 +86,6 @@ Model training:
       ├── wave1_distribution_decision_tree.png
       └── wave1_distribution_random_forest.png
 
-### 3.9 REPRODUCIBILITY
-- Default seed = 101
-- All tuning and cross-validation are deterministic
-- Rerunning with the same seed reproduces identical results
 
 
 
