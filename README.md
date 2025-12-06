@@ -44,6 +44,7 @@ Variables include:
 ## 3 Setup and Exectuion
 
 ### 3.1 Download repository, unzip it, and enter the folder vax-hesitancy-ml-main in a terminal window
+    cd Downloads/vax-hesitancy-ml-main
 
 ### 3.2 Create virtual environment
     python -m venv .venv
@@ -78,6 +79,7 @@ Variables include:
       ├── wave1_distribution_lasso.png
       ├── wave1_distribution_decision_tree.png
       └── wave1_distribution_random_forest.png
+
 
 
 
