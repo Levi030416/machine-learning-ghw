@@ -70,8 +70,8 @@ Variables include:
     project_root/
     ├── main.py
     ├── requirements.txt
-    ├── data/
-    │   └── dataset.csv        <-- DATA IS ALREADY INCLUDED HERE
+    ├── dataset/
+    │   └── vh_data14.csv
     ├── code/
     │   ├── data.py
     │   ├── features.py
@@ -117,6 +117,7 @@ Model training:
 - Default seed = 101
 - All tuning and cross-validation are deterministic
 - Rerunning with the same seed reproduces identical results
+
 
 
 
