@@ -20,8 +20,6 @@ def wave2(vh: pd.DataFrame) -> pd.DataFrame:
     # Setting the respondent_id as the index column
     vh_wave2.set_index("respondent_id", inplace=True)
 
-    print("\nData loaded.")
-
     return vh_wave2
 
 
