@@ -48,31 +48,37 @@ Variables include:
    data/vh_data14.csv
 
 
-## 3. FULL PROJECT SETUP & EXECUTION
+## 3 FULL PROJECT SETUP & EXECUTION
 
-# 3.1 Clone the repository and enter it
-git clone <REPOSITORY_URL>
-cd <REPOSITORY_NAME>
+### 3.1 Clone repository and enter it
 
-# 3.2 Create a virtual environment
+
+   git clone <REPOSITORY_URL>
+   
+   cd <REPOSITORY_NAME>
+
+
+### 3.2 Create virtual environment
 python -m venv .venv
 
-# 3.3 Activate the environment
-# Windows:
-.venv\Scripts\activate
-# macOS / Linux:
-source .venv/bin/activate
+### 3.3 Activate the environment
+    Windows:
+     .venv\Scripts\activate
+    macOS / Linux:
+     source .venv/bin/activate
 
-# 3.4 Install all required packages
-# requirements.txt must contain exactly:
-# numpy
-# pandas
-# scikit-learn
-# matplotlib
-# optuna
+### 3.4 Install all required packages
+
+requirements.txt must contain exactly:
+numpy
+pandas
+scikit-learn
+matplotlib
+optuna
+
 pip install -r requirements.txt
 
-# 3.5 EXPECTED FOLDER STRUCTURE (DO NOT CHANGE)
+# 5) EXPECTED FOLDER STRUCTURE (DO NOT CHANGE)
 # project_root/
 # ├── main.py
 # ├── requirements.txt
@@ -85,22 +91,23 @@ pip install -r requirements.txt
 # │   └── evaluate.py
 # └── outputs/               <-- GENERATED AUTOMATICALLY
 
-# 3.6 RUN THE FULL MACHINE LEARNING PIPELINE
-# --data_path is required by the script, even though the data is already in /data
+# 6) RUN THE FULL MACHINE LEARNING PIPELINE
+# --data_path is REQUIRED by the script even though the data is already in /data
 # --seed is OPTIONAL (default = 101)
 python main.py --data_path data/dataset.csv --seed 101
 
-# 3.7 WHAT HAPPENS AFTER EXECUTION
-# - Wave 2 data is used for training
-# - 80/20 stratified train-test split
-# - Feature engineering (dummies, imputation, scaling)
+# 7) PIPELINE BEHAVIOR
+# - Loads dataset from data/
+# - Uses Wave 2 for training
+# - 80/20 stratified train–test split
+# - Feature engineering (dummies, type conversion, imputation, scaling)
 # - Model training:
 #   OLS, Ridge, Lasso, Decision Tree, Random Forest (Optuna tuned)
-# - Model evaluation (AUC, Accuracy, Precision, Recall, F1, Confusion Matrix)
+# - Model evaluation (Accuracy, Precision, Recall, F1, ROC-AUC, Confusion Matrix)
 # - Wave 1 out-of-sample prediction
 # - All results saved automatically into /outputs/
 
-# 3.8 GENERATED OUTPUT FILES
+# 8) GENERATED OUTPUT FILES
 # outputs/
 # ├── metrics.json
 # ├── metrics_table.csv
@@ -117,12 +124,7 @@ python main.py --data_path data/dataset.csv --seed 101
 #     ├── wave1_distribution_decision_tree.png
 #     └── wave1_distribution_random_forest.png
 
-# 3.9 REPRODUCIBILITY
+# 9) REPRODUCIBILITY
 # - Default seed = 101
-# - All tuning & CV are deterministic
+# - All tuning and cross-validation are deterministic
 # - Rerunning with the same seed reproduces identical results
-
-**Expected runtime (full pipeline):** ~10 minutes 38 seconds on a standard personal laptop.  
-This includes data loading, feature engineering, model training, evaluation, and Wave 1 prediction.  
-Runtime may vary depending on hardware, available memory, and parallelization settings.
-
