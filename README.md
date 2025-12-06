@@ -84,7 +84,7 @@ Variables include:
     --seed is OPTIONAL (default = 101)
     python main.py --data_path data/dataset.csv --seed 101
 
-### 3.7) PIPELINE BEHAVIOR
+### 3.7 PIPELINE BEHAVIOR
 - Loads dataset from data/
 - Uses Wave 2 for training
 - 80/20 stratified train–test split
@@ -96,7 +96,7 @@ Model training:
  - Wave 1 out-of-sample prediction
  - All results saved automatically into /outputs/
 
-# 8) GENERATED OUTPUT FILES
+### 3.8 GENERATED OUTPUT FILES
     outputs/
     ├── metrics.json
     ├── metrics_table.csv
@@ -117,6 +117,7 @@ Model training:
 - Default seed = 101
 - All tuning and cross-validation are deterministic
 - Rerunning with the same seed reproduces identical results
+
 
 
 
