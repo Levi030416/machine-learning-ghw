@@ -82,7 +82,7 @@ Variables include:
 ### 3.6 RUN THE FULL MACHINE LEARNING PIPELINE
     --data_path is REQUIRED by the script even though the data is already in /data
     --seed is OPTIONAL (default = 101)
-    python main.py --data_path data/dataset.csv --seed 101
+    python main.py --data_path dataset/vh_data14.csv --seed 101
 
 ### 3.7 PIPELINE BEHAVIOR
 - Loads dataset from data/
@@ -117,6 +117,7 @@ Model training:
 - Default seed = 101
 - All tuning and cross-validation are deterministic
 - Rerunning with the same seed reproduces identical results
+
 
 
 
